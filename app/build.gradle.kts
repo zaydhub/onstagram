@@ -26,6 +26,14 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy.eachDependency {
+        if (requested.group == "org.jetbrains.kotlin") {
+            useVersion("1.8.22")
+        }
+    }
+}
+
 dependencies {
 
     implementation("androidx.appcompat:appcompat:1.7.0")
