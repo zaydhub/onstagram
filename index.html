@@ -1526,12 +1526,18 @@ document
     .getElementById("dmButton")
     .addEventListener("click", function () {
 
-        /*
-           Later this button will open
-           the Onstagram DM screen.
-        */
+        if (window.Android && Android.openInstagram) {
 
-        console.log("Messages opened");
+            Android.openInstagram(
+                "https://www.instagram.com/direct/inbox/"
+            );
+
+        } else {
+
+            window.location.href =
+                "https://www.instagram.com/direct/inbox/";
+
+        }
 
     });
 
