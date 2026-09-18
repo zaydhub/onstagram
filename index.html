@@ -1526,18 +1526,8 @@ document
     .getElementById("dmButton")
     .addEventListener("click", function () {
 
-        if (window.Android && Android.openInstagram) {
-
-            Android.openInstagram(
-                "https://www.instagram.com/direct/inbox/"
-            );
-
-        } else {
-
-            window.location.href =
-                "https://www.instagram.com/direct/inbox/";
-
-        }
+        window.location.href =
+            "https://www.instagram.com/direct/inbox/";
 
     });
 
