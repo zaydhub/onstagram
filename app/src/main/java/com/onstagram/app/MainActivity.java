@@ -36,29 +36,29 @@ public class MainActivity extends AppCompatActivity {
 
         webView.setWebViewClient(new WebViewClient());
 
-        webView.addJavascriptInterface(new Object() {
-
-            @JavascriptInterface
-            public void openInstagram(String url) {
-                webView.loadUrl(url);
-            }
-
-        }, "Android");
+        webView.addJavascriptInterface(new WebAppInterface(), "Android");
 
         webView.loadUrl("file:///android_asset/index.html");
+    }
+
+    private class WebAppInterface {
+
+        @JavascriptInterface
+        public void openInstagram(String url) {
+
+            runOnUiThread(() -> {
+                webView.loadUrl(url);
+            });
+        }
     }
 
     @Override
     public void onBackPressed() {
 
         if (webView.canGoBack()) {
-
             webView.goBack();
-
         } else {
-
             super.onBackPressed();
-
         }
     }
 }
