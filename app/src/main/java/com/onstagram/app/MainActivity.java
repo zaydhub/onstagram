@@ -15,11 +15,9 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
 
         webView = new WebView(this);
-
         setContentView(webView);
 
         WebSettings settings = webView.getSettings();
@@ -28,30 +26,27 @@ public class MainActivity extends AppCompatActivity {
         settings.setDomStorageEnabled(true);
         settings.setDatabaseEnabled(true);
 
-        settings.setLoadWithOverviewMode(false);
-        settings.setUseWideViewPort(false);
+        settings.setAllowFileAccess(true);
+        settings.setAllowContentAccess(true);
 
         settings.setBuiltInZoomControls(false);
         settings.setDisplayZoomControls(false);
 
         webView.setWebViewClient(new WebViewClient());
 
-        webView.loadUrl(
-                "file:///android_asset/index.html"
-        );
+        webView.loadUrl("file:///android_asset/index.html");
+    }
+
+    public void openInstagram(String url) {
+        webView.loadUrl(url);
     }
 
     @Override
     public void onBackPressed() {
-
         if (webView.canGoBack()) {
-
             webView.goBack();
-
         } else {
-
             super.onBackPressed();
-
         }
     }
 }
